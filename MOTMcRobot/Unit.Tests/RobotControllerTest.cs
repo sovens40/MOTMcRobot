@@ -1,11 +1,7 @@
 ﻿using Domain.Enums;
 using Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Unit.Tests
 {
@@ -73,6 +69,55 @@ namespace Unit.Tests
             Assert.AreEqual(4, robot.PositionX);
             Assert.AreEqual(4, robot.PositionY);
             Assert.AreEqual(Facing.SOUTH, robot.Facing);
+        }
+
+        //Test Rotation
+        [TestMethod]
+        public void CanRotate90Left()
+        {
+            var commands = new List<string> { "PLACE 0,0,NORTH", "LEFT", "REPORT" };
+            var robot = new RobotController(gridLength, commandValidator).Execute(commands);
+            Assert.AreEqual(Facing.WEST, robot.Facing);
+        }
+
+        [TestMethod]
+        public void CanRotate180Left()
+        {
+            var commands = new List<string> { "PLACE 0,0,NORTH", "LEFT", "LEFT", "REPORT" };
+            var robot = new RobotController(gridLength, commandValidator).Execute(commands);
+            Assert.AreEqual(Facing.SOUTH, robot.Facing);
+        }
+
+        [TestMethod]
+        public void CanRotate360Left()
+        {
+            var commands = new List<string> { "PLACE 0,0,NORTH", "LEFT", "LEFT", "LEFT", "LEFT", "REPORT" };
+            var robot = new RobotController(gridLength, commandValidator).Execute(commands);
+            Assert.AreEqual(Facing.NORTH, robot.Facing);
+        }
+
+        [TestMethod]
+        public void CanRotate90Right()
+        {
+            var commands = new List<string> { "PLACE 0,0,NORTH", "RIGHT", "REPORT" };
+            var robot = new RobotController(gridLength, commandValidator).Execute(commands);
+            Assert.AreEqual(Facing.EAST, robot.Facing);
+        }
+
+        [TestMethod]
+        public void CanRotate180Right()
+        {
+            var commands = new List<string> { "PLACE 0,0,NORTH", "RIGHT", "RIGHT", "REPORT" };
+            var robot = new RobotController(gridLength, commandValidator).Execute(commands);
+            Assert.AreEqual(Facing.SOUTH, robot.Facing);
+        }
+
+        [TestMethod]
+        public void CanRotate360Right()
+        {
+            var commands = new List<string> { "PLACE 0,0,NORTH", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "REPORT" };
+            var robot = new RobotController(gridLength, commandValidator).Execute(commands);
+            Assert.AreEqual(Facing.NORTH, robot.Facing);
         }
 
         [TestMethod]
