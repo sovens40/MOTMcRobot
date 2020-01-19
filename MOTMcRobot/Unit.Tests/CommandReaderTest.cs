@@ -20,12 +20,5 @@ namespace Unit.Tests
         public void ExceptionHandledIfFileEmpty(){
             new CommandReader(@"..\..\Fixtures\CommandFileEmpty.txt").Read();          
         }
-
-        [TestMethod]
-        public void CanReadValidFile()
-        {
-            var commands = new CommandReader(@"..\..\Fixtures\CommandFile8Commands.txt").Read();
-            Assert.AreEqual(8, commands.Count);
-        }
     }
 }

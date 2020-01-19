@@ -1,6 +1,7 @@
 ﻿using Domain.Enums;
 using Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace Unit.Tests
@@ -168,6 +169,14 @@ namespace Unit.Tests
             Assert.AreEqual(3, robot.PositionX);
             Assert.AreEqual(3, robot.PositionY);
             Assert.AreEqual(Facing.WEST, robot.Facing);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ExceptionHandledIfNoStartingPlaceCommand()
+        {
+            var commands = new List<string> { "MOVE", "Right", "MOVE", "PLACE 3,3,WEST", "REPORT" };
+            new RobotController(gridLength, commandValidator).Execute(commands);
         }
     }
 }

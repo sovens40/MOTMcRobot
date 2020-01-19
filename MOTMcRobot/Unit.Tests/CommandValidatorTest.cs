@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Domain.Enums;
+﻿using Domain.Enums;
 using Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Unit.Tests
 {
@@ -15,7 +14,6 @@ namespace Unit.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ExceptionHandledIfIncorrectStartCommand()
         {
-            var commands = new List<string> { "MOVE", "LEFT", "RIGHT", "REPORT" };
             var command = "MOVE";
             new CommandValidator(gridLength).Place(command);
         }
@@ -24,7 +22,6 @@ namespace Unit.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ExceptionHandledIfPlaceCommandHasToManyInstructions()
         {
-            var commands = new List<string> { "PLACE 0,0,0,NORTH" };
             var command = "PLACE 0,0,0,NORTH";
             new CommandValidator(gridLength).Place(command);
         }
@@ -33,7 +30,6 @@ namespace Unit.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ExceptionHandledIfPlaceCommandHasMissingInstructions()
         {
-            var commands = new List<string> { "PLACE 0,NORTH" };
             var command = "PLACE 0,NORTH";
             new CommandValidator(gridLength).Place(command);
         }
@@ -42,7 +38,6 @@ namespace Unit.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ExceptionHandledIfPlaceCommandXIsNotAnumber()
         {
-            var commands = new List<string> { "PLACE A,0,NORTH" };
             var command = "PLACE A,0,NORTH";
             new CommandValidator(gridLength).Place(command);
         }
@@ -51,7 +46,6 @@ namespace Unit.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ExceptionHandledIfPlaceCommandYIsNotAnumber()
         {
-            var commands = new List<string> { "PLACE 0,A,NORTH" };
             var command = "PLACE 0,A,NORTH";
             new CommandValidator(gridLength).Place(command);
         }
@@ -60,7 +54,6 @@ namespace Unit.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ExceptionHandledIfPlaceCommandFacingIsNotValid()
         {
-            var commands = new List<string> { "PLACE 0,0,WRONG" };
             var command = "PLACE 0,0,WRONG";
             new CommandValidator(gridLength).Place(command);
         }
@@ -69,7 +62,6 @@ namespace Unit.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ExceptionHandledIfPlaceXCommandIsNegativeValue()
         {
-            var commands = new List<string> { "PLACE -1,0,NORTH" };
             var command = "PLACE -1,0,NORTH";
             new CommandValidator(gridLength).Place(command);
         }

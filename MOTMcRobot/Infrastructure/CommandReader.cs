@@ -17,9 +17,18 @@ namespace Infrastructure
         {
             var lines = File.ReadAllLines(filePath);
             if (lines.Length == 0)
+            {
                 throw new Exception("Command file is blank");
+            }
 
-            return new List<string>(lines);
+            var commands = new List<string>();
+            //Trim commands of whitespace and ensure they are uppercase
+            foreach (var line in lines)
+            {
+                commands.Add(line.Trim().ToUpper());
+            }
+
+            return commands;
         }
     }
 }

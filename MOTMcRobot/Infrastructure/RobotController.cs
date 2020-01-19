@@ -19,18 +19,29 @@ namespace Infrastructure
 
         public Robot Execute(List<string> commands)
         {
-            foreach(var command in commands)
+            //Execute first Place command
+            Place(commands[0]);
+
+            //Execute the other commands
+            for (int i = 1; i < commands.Count; i++)
             {
-                if(command.StartsWith(Enum.GetName(typeof(Commands), Commands.PLACE)))
+                if (commands[i].StartsWith(Enum.GetName(typeof(Commands), Commands.PLACE)))
                 {
-                    Place(command);
+                    Place(commands[i]);
                 }
-                else if(command == Enum.GetName(typeof(Commands), Commands.REPORT))
+                else if (commands[i] == Enum.GetName(typeof(Commands), Commands.MOVE) ||
+                    commands[i] == Enum.GetName(typeof(Commands), Commands.LEFT) ||
+                    commands[i] == Enum.GetName(typeof(Commands), Commands.RIGHT))
                 {
-                     Report();
+                    Move(commands[i]);
                 }
-                else {
-                    Move(command);
+                else if (commands[i] == Enum.GetName(typeof(Commands), Commands.REPORT))
+                {
+                    Report();
+                }
+                else
+                {
+                    //Log or report unknown commands
                 }
             }
 
