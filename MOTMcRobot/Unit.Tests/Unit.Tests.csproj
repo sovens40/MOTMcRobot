@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fixtures\CommandFile8Commands.txt" />
-    <Content Include="Fixtures\CommandFileNoPlace.txt" />
     <Content Include="Fixtures\CommandFileEmpty.txt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -37,12 +37,12 @@ namespace Infrastructure
             return robot;
         }
 
-        public void Place(string command)
+        private void Place(string command)
         {
             robot = commandValidator.Place(command);
         }
 
-        public void Move(string command)
+        private void Move(string command)
         {
             Enum.TryParse<Commands>(command, out Commands commandParsed);
             switch (robot.Facing)

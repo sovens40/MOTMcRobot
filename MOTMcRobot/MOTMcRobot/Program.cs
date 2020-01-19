@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Infrastructure;
+using System.IO;
 
 namespace MOTMcRobot
 {
@@ -10,6 +7,10 @@ namespace MOTMcRobot
     {
         static void Main(string[] args)
         {
+            var gridLength = 5;
+            var path = Directory.GetCurrentDirectory() + "/Commands/Commands.txt";
+            var commands = new CommandReader(path).Read();
+            new RobotController(gridLength, new CommandValidator(gridLength)).Execute(commands);
         }
     }
 }
